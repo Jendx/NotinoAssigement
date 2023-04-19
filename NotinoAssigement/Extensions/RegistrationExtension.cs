@@ -1,8 +1,7 @@
-﻿using NotinoAssigement.Handlers;
+﻿namespace NotinoAssigement.Extensions;
+using Notino.Domain.Models;
+using NotinoAssigement.Handlers;
 using NotinoAssigement.Handlers.Abstraction;
-using NotinoAssigement.Models;
-
-namespace NotinoAssigement.Extensions;
 
 internal static class RegistrationExtension
 {

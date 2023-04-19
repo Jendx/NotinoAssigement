@@ -1,5 +1,6 @@
+using Notino.Domain.Models;
 using NotinoAssigement.Extensions;
-using NotinoAssigement.Models;
+using NotinoAssigement.Handlers;
 
 public class API
 {
@@ -41,9 +42,16 @@ public class API
         .WithName("GetWeatherForecast")
         .WithOpenApi();
 
-        app.MapPost("/documents", async (Document[] documents) =>
+        app.MapPost("/documents", async (Document document, CreateDocumentHandler handler) =>
         {
+            if (document is null) 
+            {
+                return Results.BadRequest("No documents are send");
+            }
 
+            await handler.HandleAsync(document);
+
+            return Results.Ok();
         })
         .WithName("CreateDocuments")
         .WithOpenApi();

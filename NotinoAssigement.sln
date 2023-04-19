@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotinoAssigement", "NotinoAssigement\NotinoAssigement.csproj", "{BBFFFD76-22BC-4778-B5EA-CED70D0428E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notino.Api", "NotinoAssigement\Notino.Api.csproj", "{BBFFFD76-22BC-4778-B5EA-CED70D0428E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notino.Domain", "Domain\Notino.Domain.csproj", "{4E1EA23E-0BAD-4942-871D-7A8563F9B553}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notino.Data.SQLLite", "Notino.Data-MSSQL\Notino.Data.SQLLite.csproj", "{07D4CBC4-4D50-4FED-B1A5-B6DBB9697F90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notino.Data.InMemoryEF", "Notino.Data.InMemoryEF\Notino.Data.InMemoryEF.csproj", "{C660CCC1-691E-4985-BC63-070951934BD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{BBFFFD76-22BC-4778-B5EA-CED70D0428E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBFFFD76-22BC-4778-B5EA-CED70D0428E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBFFFD76-22BC-4778-B5EA-CED70D0428E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E1EA23E-0BAD-4942-871D-7A8563F9B553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E1EA23E-0BAD-4942-871D-7A8563F9B553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E1EA23E-0BAD-4942-871D-7A8563F9B553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E1EA23E-0BAD-4942-871D-7A8563F9B553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07D4CBC4-4D50-4FED-B1A5-B6DBB9697F90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07D4CBC4-4D50-4FED-B1A5-B6DBB9697F90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07D4CBC4-4D50-4FED-B1A5-B6DBB9697F90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07D4CBC4-4D50-4FED-B1A5-B6DBB9697F90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C660CCC1-691E-4985-BC63-070951934BD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C660CCC1-691E-4985-BC63-070951934BD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C660CCC1-691E-4985-BC63-070951934BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C660CCC1-691E-4985-BC63-070951934BD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

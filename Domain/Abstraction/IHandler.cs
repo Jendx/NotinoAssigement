@@ -1,4 +1,4 @@
-﻿namespace NotinoAssigement.Handlers.Abstraction;
+﻿namespace Notino.Domain.Abstraction;
 
 internal interface IHandler<TModel>
 {
