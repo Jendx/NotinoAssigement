@@ -1,25 +1,19 @@
-﻿namespace Notino.Data.MSSQL;
-using Microsoft.Data.SqlClient;
+﻿namespace Notino.Data.SQLite;
 
-internal class DatabaseConnection
+using Microsoft.Data.Sqlite;
+
+internal sealed class DatabaseConnection
 {
-    private const string connectionString = "Data Source=(local);Initial Catalog=master;Integrated Security=True;";
-    private const string databaseName = "NotinoAssigenement";
-
+    private const string connectionString = "Data Source=NotinoAssignment.db;Version=3;";
     /// <summary>
     /// Initializes connection to DataBase. If Database does not exist, it will create new one
     /// </summary>
-    public void InitDatabase()
+    public async Task InitDatabaseAsync()
     {
-        using var connection = new SqlConnection(connectionString);
-        connection.Open();
+        using var connection = new SqliteConnection(connectionString);
+        await connection.OpenAsync();
 
-        CreateDataBase(connection);
+        await connection.CloseAsync();
     }
 
-    private void CreateDataBase(SqlConnection connection)
-    {
-        using var command = new SqlCommand($"CREATE DATABASE {databaseName}", connection);
-        command.ExecuteNonQuery();
-    }
 }

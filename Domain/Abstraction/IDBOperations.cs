@@ -1,10 +1,13 @@
 ﻿namespace Notino.Domain.Abstraction;
 
-public interface IDBOperations<TModel>
+using Notino.Domain.Models.Abstraction;
+
+public interface IDBOperations<TModel> 
+    where TModel : IModel
 {
     public TModel Get();
 
-    public TModel Update(TModel data);
+    public Task<TModel> UpdateAsync(TModel data);
     
-    public TModel Insert(TModel data);
+    public Task<TModel> InsertAsync(TModel data);
 }

@@ -10,4 +10,8 @@
     <Folder Include="Schema\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Notino.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

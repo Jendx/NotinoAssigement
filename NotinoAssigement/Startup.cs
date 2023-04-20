@@ -1,6 +1,6 @@
+namespace Notino.Api;
+
 using Notino.Domain.Models;
-using NotinoAssigement.Extensions;
-using NotinoAssigement.Handlers;
 
 public class API
 {
@@ -9,7 +9,7 @@ public class API
         var builder = WebApplication.CreateBuilder(Array.Empty<string>());
 
         // Add services to the container.
-        builder.RegisterServices();
+        builder.Services.RegisterServices();
 
         var app = builder.Build();
 

@@ -1,20 +1,23 @@
-﻿using Notino.Domain.Abstraction;
+﻿namespace Notino.Data.SQLite;
 
-namespace Notino.Data.MSSQL;
+using Notino.Domain.Abstraction;
+using Notino.Domain.Models.Abstraction;
+using System.Threading.Tasks;
 
 internal sealed class DBOperations<TModel> : IDBOperations<TModel>
+    where TModel : IModel
 {
     public TModel Get()
     {
         throw new NotImplementedException();
     }
 
-    public TModel Insert(TModel data)
+    public async Task<TModel> UpdateAsync(TModel data)
     {
         throw new NotImplementedException();
     }
 
-    public TModel Update(TModel data)
+    public async Task<TModel> InsertAsync(TModel data)
     {
         throw new NotImplementedException();
     }

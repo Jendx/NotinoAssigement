@@ -1,12 +1,24 @@
-﻿using Notino.Domain.Models;
-using NotinoAssigement.Handlers.Abstraction;
+﻿namespace Notino.Api.Handlers;
 
-namespace NotinoAssigement.Handlers;
+using Notino.Api.Handlers.Abstraction;
+using Notino.Domain.Abstraction;
+using Notino.Domain.Models;
 
 internal sealed class CreateDocumentHandler : IHandler<Document>
 {
-    public Task<Document> HandleAsync(Document model)
+    private readonly IDBOperations<Document> _dbOperations; 
+
+    public CreateDocumentHandler(
+        IDBOperations<Document> dbOperations)
     {
-        throw new NotImplementedException();
+        _dbOperations = dbOperations is not null ? dbOperations : throw new ArgumentNullException(nameof(dbOperations));
+    }
+
+
+    public async Task<Document> HandleAsync(Document model)
+    {
+        var data = await _dbOperations.InsertAsync(model);
+
+        return model;
     }
 }
