@@ -14,11 +14,13 @@ internal sealed class CreateDocumentHandler : IHandler<Document>
         _dbOperations = dbOperations is not null ? dbOperations : throw new ArgumentNullException(nameof(dbOperations));
     }
 
-
-    public async Task<Document> HandleAsync(Document model)
+    public async Task HandleAsync(Document model)
     {
-        var data = await _dbOperations.InsertAsync(model);
+        if (!await _dbOperations.InsertAsync(model))
+        {
 
-        return model;
+        }
+
+        return data;
     }
 }

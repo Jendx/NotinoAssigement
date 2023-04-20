@@ -1,5 +1,7 @@
 namespace Notino.Api;
 
+using Notino.Api.Extensions;
+using Notino.Api.Handlers;
 using Notino.Domain.Models;
 
 public class API

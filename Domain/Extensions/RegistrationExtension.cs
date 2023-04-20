@@ -8,7 +8,6 @@ internal static class RegistrationExtension
 {
     public static IServiceCollection RegisterHandlers(this IServiceCollection services)
     {
-
         return services;
     }
 }

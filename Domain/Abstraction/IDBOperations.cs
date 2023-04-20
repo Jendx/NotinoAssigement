@@ -9,5 +9,5 @@ public interface IDBOperations<TModel>
 
     public Task<TModel> UpdateAsync(TModel data);
     
-    public Task<TModel> InsertAsync(TModel data);
+    public Task<bool> InsertAsync(TModel data);
 }

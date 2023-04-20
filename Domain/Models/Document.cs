@@ -1,6 +1,6 @@
-﻿using Notino.Domain.Models.Abstraction;
+﻿namespace Notino.Domain.Models;
 
-namespace Notino.Domain.Models;
+using Notino.Domain.Models.Abstraction;
 
 public sealed class Document : IModel
 {
