@@ -23,15 +23,24 @@ internal sealed class CreateDocumentHandler : IHandler<Document>
     public async Task<Document> HandleAsync(Document model)
     {
         var documentResult = await _documents.InsertAsync(new DocumentSchema(model));
-        var tagResult = await _tags.InsertAsync(new TagSchema(model.Tags[0], model.Id));
-
         var result = new Document()
         {
             Id = model.Id,
             Data = (documentResult as DocumentSchema).Data.FromByteArray<object>(),
-            Tags = new List<string>() { (tagResult as TagSchema).Tag }
+            Tags = new List<string>()
         };
 
+        await InsertTagsAsync(model, result);
+
         return result;
+    }
+
+    private async Task InsertTagsAsync(Document model, Document result)
+    {
+        foreach (var tag in model.Tags)
+        {
+            result.Tags.Add(
+                (await _tags.InsertAsync(new TagSchema(tag, model.Id))).Tag);
+        }
     }
 }

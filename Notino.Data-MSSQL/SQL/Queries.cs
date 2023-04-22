@@ -1,32 +1,34 @@
-﻿namespace Notino.Data.SQLite.SQL;
+﻿using Notino.Domain.Models;
+
+namespace Notino.Data.SQLite.SQL;
 
 internal static class Queries
 {
-    public const string GetDocuments = """
-        SELECT Documents.Id, Documents.Data, Tags.Tag
+    public const string GetDocuments = $"""
+        SELECT Documents.{nameof(DocumentSchema.Id)}, Documents.{nameof(DocumentSchema.Data)}, Tags.{nameof(TagSchema.Tag)}
         FROM Documents
         	JOIN Tags ON Documents.id = Tags.DocumentId
         """;
 
-    public const string GetDocument = """
+    public const string GetDocument = $"""
         SELECT *
         FROM Documents
-        WHERE Documents.Id = @Id
+        WHERE Documents.Id = @{nameof(DocumentSchema.Id)}
         """;
-    public const string InsertDocument = """
-        INSERT INTO Documents (Id, Data) 
-        VALUES (@Id, @Data)
-        """;
-
-    public const string InsertTag = """
-        INSERT INTO Tags (Id, Tag, DocumentId) 
-        VALUES (@Id, @Tag, @DocumentId)
+    public const string InsertDocument = $"""
+        INSERT INTO Documents ({nameof(DocumentSchema.Id)}, {nameof(DocumentSchema.Data)}) 
+        VALUES (@{nameof(DocumentSchema.Id)}, @{nameof(DocumentSchema.Data)})
         """;
 
-    public const string GetTag = """
+    public const string InsertTag = $"""
+        INSERT INTO Tags ({nameof(TagSchema.Id)}, {nameof(TagSchema.Tag)}, {nameof(TagSchema.DocumentId)}) 
+        VALUES (@{nameof(TagSchema.Id)}, @{nameof(TagSchema.Tag)}, @{nameof(TagSchema.DocumentId)})
+        """;
+
+    public const string GetTag = $"""
         SELECT *
         FROM Tags
-        WHERE Tags.Id = @Id
+        WHERE Tags.Id = @{nameof(TagSchema.Id)}
         """;
 
 }

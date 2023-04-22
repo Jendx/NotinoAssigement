@@ -36,9 +36,6 @@ internal sealed class DBOperations<TModel> : IDBOperations<TModel>
 
         await connection.CloseAsync();
 
-        //return insertedData.FirstOrDefault();
-
-
         return data;
     }
 }
