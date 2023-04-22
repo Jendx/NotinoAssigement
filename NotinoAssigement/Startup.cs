@@ -1,7 +1,8 @@
 namespace Notino.Api;
 
+using Microsoft.AspNetCore.Mvc;
 using Notino.Api.Extensions;
-using Notino.Api.Handlers;
+using Notino.Api.Handlers.Abstraction;
 using Notino.Domain.Models;
 
 public class API
@@ -44,7 +45,7 @@ public class API
         .WithName("GetWeatherForecast")
         .WithOpenApi();
 
-        app.MapPost("/documents", async (Document document, CreateDocumentHandler handler) =>
+        app.MapPost("/documents", async (Document document, [FromServices] IHandler<Document> handler) =>
         {
             if (document is null) 
             {
