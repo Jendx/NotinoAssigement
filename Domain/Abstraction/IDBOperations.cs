@@ -5,7 +5,7 @@ using Notino.Domain.Models.Abstraction;
 public interface IDBOperations<TModel> 
     where TModel : IModel
 {
-    public TModel Get();
+    public Task<IEnumerable<TModel>> GetAsync(string query = null, object parameters = null);
 
     public Task<TModel> UpdateAsync(TModel data);
     

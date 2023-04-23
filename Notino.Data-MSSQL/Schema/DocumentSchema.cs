@@ -2,6 +2,7 @@
 
 using Notino.Data.SQLite.SQL;
 using Notino.Domain.Attributes;
+using Notino.Domain.Commands.DocumentCommands;
 using Notino.Domain.Helpers;
 using Notino.Domain.Models.Abstraction;
 using System.Text.Json;
@@ -13,7 +14,7 @@ public sealed class DocumentSchema : IModel
     { 
     }
 
-    public DocumentSchema(Document model)
+    public DocumentSchema(CreateDocumentCommand model)
     {
         Id = model.Id;
         if (model.Data is not null)

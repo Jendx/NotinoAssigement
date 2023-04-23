@@ -15,8 +15,13 @@ public static class RegistrationExtension
             .AddTransient<IDBOperations<DocumentSchema>, DBOperations<DocumentSchema>>()
             .AddTransient<IDBOperations<TagSchema>, DBOperations<TagSchema>>();
 
-        SqlMapper.AddTypeHandler(new GuidTypeHandler());
+        RegisterTypeHandlers();
 
         return services;
+    }
+
+    private static void RegisterTypeHandlers()
+    {
+        SqlMapper.AddTypeHandler(new GuidTypeHandler());
     }
 }

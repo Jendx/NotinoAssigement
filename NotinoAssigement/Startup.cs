@@ -3,6 +3,7 @@ namespace Notino.Api;
 using Microsoft.AspNetCore.Mvc;
 using Notino.Api.Extensions;
 using Notino.Api.Handlers.Abstraction;
+using Notino.Domain.Commands.DocumentCommands;
 using Notino.Domain.Models;
 
 public class API
@@ -23,31 +24,10 @@ public class API
             app.UseSwaggerUI();
         }
 
-        app.UseHttpsRedirection();
 
-        var summaries = new[]
+        app.MapPost("/documents", async (CreateDocumentCommand document, [FromServices] IHandler<Document, CreateDocumentCommand> handler) =>
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        app.MapGet("/weatherforecast", () =>
-        {
-            var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-                .ToArray();
-            return forecast;
-        })
-        .WithName("GetWeatherForecast")
-        .WithOpenApi();
-
-        app.MapPost("/documents", async (Document document, [FromServices] IHandler<Document> handler) =>
-        {
-            if (document is null) 
+            if (document is null)
             {
                 return Results.BadRequest("No documents are send");
             }
@@ -59,14 +39,28 @@ public class API
         .WithName("CreateDocuments")
         .WithOpenApi();
 
-        app.Run();
+        app.MapGet(
+            "/GetDocuments/{documentId}",
+            async ([FromRoute] Guid documentId, [FromServices] IHandler<Document, GetDocumentCommand> handler, HttpContext httpContext) =>
+        {
+            if (documentId == Guid.Empty)
+            {
+                return Results.NotFound("Invalid Id");
+            }
+
+            var acceptHeader = httpContext.Request.Headers["Accept"];
+
+            var result = handler.HandleAsync(new GetDocumentCommand()
+            {
+                Id = documentId,
+                Type = Domain.Enums.SupportedTypes.Json
+            });
+
+            return Results.Ok(result);
+        })
+        .WithName("GetDocuments")
+        .WithOpenApi();
+
+        app.Run("http://localhost:5000");
     }
-
-
-    internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-    {
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
-
 }
-

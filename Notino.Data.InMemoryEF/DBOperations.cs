@@ -6,7 +6,7 @@ using Notino.Domain.Models.Abstraction;
 public sealed class DBOperations<TModel> : IDBOperations<TModel>
     where TModel : IModel
 {
-    public TModel Get()
+    public Task<IEnumerable<TModel>> GetAsync(string query = null, object parameters = null)
     {
         throw new NotImplementedException();
     }

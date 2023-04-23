@@ -1,8 +1,9 @@
 ﻿namespace Notino.Api.Extensions;
 
-using Notino.Api.Handlers;
 using Notino.Api.Handlers.Abstraction;
+using Notino.Api.Handlers.Document;
 using Notino.Data.SQLite.Extensions;
+using Notino.Domain.Commands.DocumentCommands;
 using Notino.Domain.Models;
 
 internal static class ServiceRegistrationExtension
@@ -23,7 +24,8 @@ internal static class ServiceRegistrationExtension
     private static IServiceCollection RegisterHandlers(this IServiceCollection services)
     {
         services
-            .AddSingleton<IHandler<Document>, CreateDocumentHandler>();
+            .AddSingleton<IHandler<Document, CreateDocumentCommand>, CreateDocumentHandler>()
+            .AddSingleton<IHandler<Document, GetDocumentCommand>, GetDocumentHandler>();
 
         return services;
     }

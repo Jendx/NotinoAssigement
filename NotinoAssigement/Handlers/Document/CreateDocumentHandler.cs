@@ -1,16 +1,15 @@
-﻿namespace Notino.Api.Handlers;
+﻿namespace Notino.Api.Handlers.Document;
 
 using Notino.Api.Handlers.Abstraction;
 using Notino.Domain.Abstraction;
+using Notino.Domain.Commands.DocumentCommands;
 using Notino.Domain.Helpers;
 using Notino.Domain.Models;
-using Notino.Domain.Models.Abstraction;
-using System.Diagnostics;
 
-internal sealed class CreateDocumentHandler : IHandler<Document>
+internal sealed class CreateDocumentHandler : IHandler<Document, CreateDocumentCommand>
 {
-    private readonly IDBOperations<DocumentSchema> _documents; 
-    private readonly IDBOperations<TagSchema> _tags; 
+    private readonly IDBOperations<DocumentSchema> _documents;
+    private readonly IDBOperations<TagSchema> _tags;
 
     public CreateDocumentHandler(
         IDBOperations<DocumentSchema> documents,
@@ -20,13 +19,13 @@ internal sealed class CreateDocumentHandler : IHandler<Document>
         _tags = tags is not null ? tags : throw new ArgumentNullException(nameof(tags));
     }
 
-    public async Task<Document> HandleAsync(Document model)
+    public async Task<Document> HandleAsync(CreateDocumentCommand model)
     {
         var documentResult = await _documents.InsertAsync(new DocumentSchema(model));
         var result = new Document()
         {
             Id = model.Id,
-            Data = (documentResult as DocumentSchema).Data.FromByteArray<object>(),
+            Data = documentResult.Data.FromByteArray<object>(),
             Tags = new List<string>()
         };
 
@@ -35,7 +34,7 @@ internal sealed class CreateDocumentHandler : IHandler<Document>
         return result;
     }
 
-    private async Task InsertTagsAsync(Document model, Document result)
+    private async Task InsertTagsAsync(CreateDocumentCommand model, Document result)
     {
         foreach (var tag in model.Tags)
         {
