@@ -11,9 +11,13 @@ public sealed class TagSchema : IModel
     { 
     }
 
-    public TagSchema(string tag, Guid documentId, Guid? id = null) 
+    public TagSchema(Guid? id)
     {
         Id = id ?? Guid.NewGuid();
+    }
+
+    public TagSchema(string tag, Guid documentId, Guid? id = null) : this(id)
+    {
         DocumentId = documentId;
         Tag = tag; 
     }

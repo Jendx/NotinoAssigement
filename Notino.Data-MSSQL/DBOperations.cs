@@ -13,7 +13,7 @@ internal sealed class DBOperations<TModel> : IDBOperations<TModel>
 {
     private const string connectionString = @"Data Source=C:..\Notino.Data-MSSQL\Database\NotinoAssignment.db";
 
-    public async Task<IEnumerable<TModel>> GetAsync(string query = null, object parameters = null)
+    public async Task<IEnumerable<TModel>> GetAsync(TModel parameters, string query = null)
     {
         using var connection = new SqliteConnection(connectionString);
         await connection.OpenAsync();

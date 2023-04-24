@@ -13,7 +13,7 @@ public sealed class DocumentSchema : IModel
     { 
     }
 
-    public DocumentSchema(Guid id, object data)
+    public DocumentSchema(Guid id, object data = null)
     {
         Id = id;
         if (data is not null)
@@ -22,11 +22,11 @@ public sealed class DocumentSchema : IModel
         }
     }
 
-    public DocumentSchema(CreateDocumentCommand model) : this(model.Id, model.Data)
+    public DocumentSchema(CreateDocumentCommand command) : this(command.Id, command.Data)
     {
     }
 
-    public DocumentSchema(UpdateDocumentCommand model) : this(model.Id, model.Data)
+    public DocumentSchema(UpdateDocumentCommand command) : this(command.Id, command.Data)
     {
     }
 

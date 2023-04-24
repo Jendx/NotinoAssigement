@@ -1,24 +1,40 @@
 ﻿namespace Notino.Data.InMemoryEF;
 
+using Microsoft.EntityFrameworkCore;
 using Notino.Data.InMemoryEF.Database;
 using Notino.Domain.Abstraction;
 using Notino.Domain.Models.Abstraction;
 
 public sealed class DBOperations<TModel> : IDBOperations<TModel>
-    where TModel : IModel
+    where TModel : class, IModel
 {
-    public Task<IEnumerable<TModel>> GetAsync(string query = null, object parameters = null)
+    private readonly NotinoDBContext _dbContext;
+
+    public DBOperations(NotinoDBContext dBContext)
     {
-        throw new NotImplementedException();
+        _dbContext = dBContext ?? throw new ArgumentNullException(nameof(dBContext));
     }
 
-    public Task<TModel> InsertAsync(TModel data)
+    public async Task<IEnumerable<TModel>> GetAsync(TModel parameters, string query = null)
     {
-        NotinoDBContext
+        return await _dbContext.Set<TModel>().Where(d => d.Id == parameters.Id).ToArrayAsync();
     }
 
-    public Task<TModel> UpdateAsync(TModel data)
+    public async Task<TModel> InsertAsync(TModel data)
     {
-        throw new NotImplementedException();
+        var result = await _dbContext.Set<TModel>().AddAsync(data);
+        await _dbContext.SaveChangesAsync();
+
+        return result.Entity;
+    }
+
+    public async Task<TModel> UpdateAsync(TModel data)
+    {
+        var entity = await _dbContext.Set<TModel>().FirstOrDefaultAsync(e => e.Id == data.Id);
+
+        _dbContext.Entry(entity).CurrentValues.SetValues(data);
+        await _dbContext.SaveChangesAsync();
+
+        return entity;
     }
 }
