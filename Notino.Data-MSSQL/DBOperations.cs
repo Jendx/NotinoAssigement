@@ -29,7 +29,15 @@ internal sealed class DBOperations<TModel> : IDBOperations<TModel>
 
     public async Task<TModel> UpdateAsync(TModel data)
     {
-        throw new NotImplementedException();
+        using var connection = new SqliteConnection(connectionString);
+        await connection.OpenAsync();
+
+        await connection.ExecuteAsync(typeof(TModel).GetCustomAttribute<QueryAttribute>().UpdateQuery, data);
+        var updatedData = await connection.QueryAsync<TModel>(typeof(TModel).GetCustomAttribute<QueryAttribute>().GetQuery, data);
+
+        await connection.CloseAsync();
+
+        return updatedData.FirstOrDefault();
     }
 
     public async Task<TModel> InsertAsync(TModel data)
@@ -42,6 +50,6 @@ internal sealed class DBOperations<TModel> : IDBOperations<TModel>
 
         await connection.CloseAsync();
 
-        return data;
+        return insertedData.FirstOrDefault();
     }
 }

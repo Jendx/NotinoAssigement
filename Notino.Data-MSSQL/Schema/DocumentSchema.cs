@@ -5,22 +5,29 @@ using Notino.Domain.Attributes;
 using Notino.Domain.Commands.DocumentCommands;
 using Notino.Domain.Helpers;
 using Notino.Domain.Models.Abstraction;
-using System.Text.Json;
 
-[Query(InsertQuery = Queries.InsertDocument, GetQuery = Queries.GetDocument)]
+[Query(InsertQuery = Queries.InsertDocument, UpdateQuery = Queries.UpdateDocument, GetQuery = Queries.GetDocument)]
 public sealed class DocumentSchema : IModel
 {
     public DocumentSchema()
     { 
     }
 
-    public DocumentSchema(CreateDocumentCommand model)
+    public DocumentSchema(Guid id, object data)
     {
-        Id = model.Id;
-        if (model.Data is not null)
+        Id = id;
+        if (data is not null)
         {
-            Data = model.Data.ToByteArray();
+            Data = data.ToByteArray();
         }
+    }
+
+    public DocumentSchema(CreateDocumentCommand model) : this(model.Id, model.Data)
+    {
+    }
+
+    public DocumentSchema(UpdateDocumentCommand model) : this(model.Id, model.Data)
+    {
     }
 
     public Guid Id { get; set; }

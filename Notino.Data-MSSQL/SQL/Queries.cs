@@ -21,9 +21,21 @@ public static class Queries
         VALUES (@{nameof(DocumentSchema.Id)}, @{nameof(DocumentSchema.Data)})
         """;
 
+    public const string UpdateDocument = $"""
+        UPDATE Documents 
+        SET {nameof(DocumentSchema.Data)} = @{nameof(DocumentSchema.Data)}
+        WHERE {nameof(DocumentSchema.Id)} = @{nameof(DocumentSchema.Id)}
+        """;
+
     public const string InsertTag = $"""
         INSERT INTO Tags ({nameof(TagSchema.Id)}, {nameof(TagSchema.Tag)}, {nameof(TagSchema.DocumentId)}) 
         VALUES (@{nameof(TagSchema.Id)}, @{nameof(TagSchema.Tag)}, @{nameof(TagSchema.DocumentId)})
+        """;
+
+    public const string UpdateTag = $"""
+        UPDATE Tags 
+        SET {nameof(TagSchema.Tag)} = @{nameof(TagSchema.Tag)}
+        WHERE {nameof(TagSchema.Id)} = @{nameof(TagSchema.Id)}
         """;
 
     public const string GetTag = $"""

@@ -25,7 +25,8 @@ internal static class ServiceRegistrationExtension
     {
         services
             .AddSingleton<IHandler<Document, CreateDocumentCommand>, CreateDocumentHandler>()
-            .AddSingleton<IHandler<Document, GetDocumentCommand>, GetDocumentHandler>();
+            .AddSingleton<IHandler<Document, GetDocumentCommand>, GetDocumentHandler>()
+            .AddSingleton<IHandler<Document, UpdateDocumentCommand>, UpdateDocumentHandler>();
 
         return services;
     }
