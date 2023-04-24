@@ -19,15 +19,15 @@ internal sealed class GetDocumentHandler : IHandler<Document, GetDocumentCommand
         _tags = tags is not null ? tags : throw new ArgumentNullException(nameof(tags));
     }
 
-    public async Task<Document> HandleAsync(GetDocumentCommand model)
+    public async Task<Document> HandleAsync(GetDocumentCommand command)
     {
-        var documentResult = (await _documents.GetAsync(Queries.GetDocument, model)).FirstOrDefault();
+        var documentResult = (await _documents.GetAsync(Queries.GetDocument, command)).FirstOrDefault();
         if (documentResult is null)
         {
             return null;
         }
 
-        var tagsResult = await _tags.GetAsync(Queries.GetTagsOfDocument, model);
+        var tagsResult = await _tags.GetAsync(Queries.GetTagsOfDocument, command);
 
         if (tagsResult is null)
         {

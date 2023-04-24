@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿namespace Notino.Api.Controllers.Documents;
+
+using Microsoft.AspNetCore.Mvc;
 using Notino.Api.Handlers.Abstraction;
 using Notino.Domain.Commands.DocumentCommands;
 using Notino.Domain.Enums;
 using Notino.Domain.Models;
 using Notino.Domain.Serializers;
+using System.ComponentModel.DataAnnotations;
 
-namespace Notino.Api.Controllers.Documents;
-
-public static class DocumentController
+public static class DocumentEndpoints
 {
     private const string EmptyAcceptHeader = "*/*";
     private const string DefaultHeaderValue = "application/json";
@@ -15,17 +16,13 @@ public static class DocumentController
     public static void AddDocumentEndpoints(this WebApplication? app)
     {
         app.MapPost("/documents",
-            async (CreateDocumentCommand document,
-            [FromServices] IHandler<Document, CreateDocumentCommand> handler) =>
+            async (
+                [FromBody] [Required] CreateDocumentCommand document,
+                [FromServices] IHandler<Document, CreateDocumentCommand> handler) =>
         {
-            if (document is null)
-            {
-                return Results.BadRequest("No documents are send");
-            }
+            var result = await handler.HandleAsync(document);
 
-            await handler.HandleAsync(document);
-
-            return Results.Ok();
+            return Results.Ok(result);
         })
         .WithName("CreateDocument")
         .WithOpenApi();
@@ -33,15 +30,10 @@ public static class DocumentController
         app.MapPut(
             "/documents",
             async (
-                UpdateDocumentCommand document,
+                [FromBody] [Required] UpdateDocumentCommand document,
                 [FromServices] IHandler<Document, UpdateDocumentCommand> handler) =>
         {
-            if (document is null)
-            {
-                return Results.BadRequest("No documents are send");
-            }
-
-            await handler.HandleAsync(document);
+            var result = await handler.HandleAsync(document);
 
             return Results.Ok();
         })
@@ -51,21 +43,16 @@ public static class DocumentController
         app.MapGet(
             "/GetDocuments/{documentId}",
             async (
-                [FromRoute] Guid documentId, 
+                [FromRoute] [Required] Guid? documentId, 
                 [FromServices] IHandler<Document, GetDocumentCommand> handler,
-                HttpContext httpContext) =>
+                 HttpContext httpContext) =>
             {
-                if (documentId == Guid.Empty)
-                {
-                    return Results.NotFound("Invalid Id");
-                }
-
                 var acceptHeader = httpContext.Request.Headers["Accept"].FirstOrDefault(DefaultHeaderValue);
-                acceptHeader = acceptHeader is EmptyAcceptHeader ? DefaultHeaderValue : acceptHeader;
+                acceptHeader = acceptHeader is EmptyAcceptHeader or null ? DefaultHeaderValue : acceptHeader;
 
                 var result = await handler.HandleAsync(new GetDocumentCommand()
                 {
-                    Id = documentId,
+                    Id = documentId!.Value,
                 });
 
                 var serializedResult = SerializerFactory

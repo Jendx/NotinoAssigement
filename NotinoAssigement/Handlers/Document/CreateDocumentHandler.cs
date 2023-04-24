@@ -19,27 +19,27 @@ internal sealed class CreateDocumentHandler : IHandler<Document, CreateDocumentC
         _tags = tags is not null ? tags : throw new ArgumentNullException(nameof(tags));
     }
 
-    public async Task<Document> HandleAsync(CreateDocumentCommand model)
+    public async Task<Document> HandleAsync(CreateDocumentCommand command)
     {
-        var documentResult = await _documents.InsertAsync(new DocumentSchema(model));
+        var documentResult = await _documents.InsertAsync(new DocumentSchema(command));
         var result = new Document()
         {
-            Id = model.Id,
+            Id = command.Id,
             Data = documentResult.Data.FromByteArray<object>(),
             Tags = new List<string>()
         };
 
-        await InsertTagsAsync(model, result);
+        await InsertTagsAsync(command, result);
 
         return result;
     }
 
-    private async Task InsertTagsAsync(CreateDocumentCommand model, Document result)
+    private async Task InsertTagsAsync(CreateDocumentCommand command, Document result)
     {
-        foreach (var tag in model.Tags)
+        foreach (var tag in command.Tags)
         {
             result.Tags.Add(
-                (await _tags.InsertAsync(new TagSchema(tag, model.Id))).Tag);
+                (await _tags.InsertAsync(new TagSchema(tag, command.Id))).Tag);
         }
     }
 }

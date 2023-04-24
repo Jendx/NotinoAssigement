@@ -23,6 +23,6 @@ public class API
 
         app.AddDocumentEndpoints();
 
-        app.Run("http://localhost:5000");
+        app.Run();
     }
 }

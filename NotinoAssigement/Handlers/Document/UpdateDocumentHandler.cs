@@ -20,27 +20,27 @@ internal sealed class UpdateDocumentHandler : IHandler<Document, UpdateDocumentC
         _tags = tags is not null ? tags : throw new ArgumentNullException(nameof(tags));
     }
 
-    public async Task<Document> HandleAsync(UpdateDocumentCommand model)
+    public async Task<Document> HandleAsync(UpdateDocumentCommand command)
     {
-        var documentResult = await _documents.UpdateAsync(new DocumentSchema(model));
+        var documentResult = await _documents.UpdateAsync(new DocumentSchema(command));
         var result = new Document()
         {
-            Id = model.Id,
+            Id = command.Id,
             Data = documentResult.Data.FromByteArray<object>(),
             Tags = new List<string>()
         };
 
-        await UpdateTagsAsync(model, result);
+        await UpdateTagsAsync(command, result);
 
         return result;
     }
 
-    private async Task UpdateTagsAsync(UpdateDocumentCommand model, Document result)
+    private async Task UpdateTagsAsync(UpdateDocumentCommand command, Document result)
     {
-        foreach (var tag in model.Tags)
+        foreach (var tag in command.Tags)
         {
             result.Tags.Add(
-                (await _tags.UpdateAsync(new TagSchema(tag.Tag, model.Id, tag.Id))).Tag);
+                (await _tags.UpdateAsync(new TagSchema(tag.Tag, command.Id, tag.Id))).Tag);
         }
     }
 }
