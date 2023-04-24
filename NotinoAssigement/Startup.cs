@@ -1,10 +1,14 @@
 namespace Notino.Api;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Notino.Api.Extensions;
 using Notino.Api.Handlers.Abstraction;
 using Notino.Domain.Commands.DocumentCommands;
+using Notino.Domain.Enums;
 using Notino.Domain.Models;
+using Notino.Domain.Serializers;
+using System.Net.Mime;
 
 public class API
 {
@@ -48,15 +52,18 @@ public class API
                 return Results.NotFound("Invalid Id");
             }
 
-            var acceptHeader = httpContext.Request.Headers["Accept"];
+            var acceptHeader = httpContext.Request.Headers["Accept"].FirstOrDefault("application/json");
 
-            var result = handler.HandleAsync(new GetDocumentCommand()
+            var result = await handler.HandleAsync(new GetDocumentCommand()
             {
                 Id = documentId,
-                Type = Domain.Enums.SupportedTypes.Json
             });
 
-            return Results.Ok(result);
+            var serializedResult = SerializerFactory
+                .CreateSerializer<Document>(Enum.Parse<DocumentType>(acceptHeader.Split('/')[1], true))
+                .Serialize(result);
+
+            return Results.Text(serializedResult, acceptHeader);
         })
         .WithName("GetDocuments")
         .WithOpenApi();

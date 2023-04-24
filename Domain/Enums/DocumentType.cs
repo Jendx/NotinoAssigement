@@ -1,7 +1,7 @@
 ﻿namespace Notino.Domain.Enums;
 
-public enum SupportedTypes
+public enum DocumentType
 {
     Json = 0,
-    XML = 1,
+    Xml = 1,
 }
