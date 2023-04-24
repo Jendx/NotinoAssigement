@@ -1,17 +1,24 @@
-﻿
-using Microsoft.Extensions.DependencyInjection;
-using Notino.Domain.Abstraction;
-using Notino.Domain.Models;
-using Notino.Domain.Models.Abstraction;
+﻿namespace Notino.Data.InMemoryEF.Extensions;
 
-namespace Notino.Data.InMemoryEF.Extensions;
-internal static class RegistrationExtension
+using Microsoft.Extensions.DependencyInjection;
+using Notino.Data.InMemoryEF.Database;
+using Notino.Data.InMemoryEF.Entities;
+using Notino.Domain.Abstraction;
+using Microsoft.EntityFrameworkCore;
+
+public static class ServiceRegistrationExtension
 {
-    public static IServiceCollection RegisterData(this IServiceCollection services)
+    public static IServiceCollection UseInMemoryEFDB(this IServiceCollection services)
     {
         services
-            .AddSingleton<IDBOperations<IModel>, DBOperations<IModel>>();
+            .AddDbContext<NotinoDBContext>(config =>
+            {
+                config.UseInMemoryDatabase("NotinoInMemoryDatabase");
+            })
+            .AddScoped<IDBOperations<DocumentEntity>, DBOperations<DocumentEntity>>();
 
         return services;
     }
+
+
 }

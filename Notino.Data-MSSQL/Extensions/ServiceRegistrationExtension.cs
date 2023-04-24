@@ -12,8 +12,8 @@ public static class RegistrationExtension
     public static IServiceCollection UseSQLiteDB(this IServiceCollection services)
     {
         services
-            .AddTransient<IDBOperations<DocumentSchema>, DBOperations<DocumentSchema>>()
-            .AddTransient<IDBOperations<TagSchema>, DBOperations<TagSchema>>();
+            .AddScoped<IDBOperations<DocumentSchema>, DBOperations<DocumentSchema>>()
+            .AddScoped<IDBOperations<TagSchema>, DBOperations<TagSchema>>();
 
         RegisterTypeHandlers();
 

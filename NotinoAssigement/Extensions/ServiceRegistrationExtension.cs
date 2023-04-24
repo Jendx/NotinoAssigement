@@ -2,6 +2,7 @@
 
 using Notino.Api.Handlers.Abstraction;
 using Notino.Api.Handlers.Document;
+using Notino.Data.InMemoryEF.Extensions;
 using Notino.Data.SQLite.Extensions;
 using Notino.Domain.Commands.DocumentCommands;
 using Notino.Domain.Models;
@@ -13,10 +14,11 @@ internal static class ServiceRegistrationExtension
         services
             .AddEndpointsApiExplorer()
             .AddSwaggerGen()
-            .UseSQLiteDB();
+            .UseSQLiteDB()
+            .UseInMemoryEFDB();
 
-
-        services.RegisterHandlers();
+        services
+            .RegisterHandlers();
 
         return services;
     }

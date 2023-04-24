@@ -10,7 +10,8 @@ public class API
         var builder = WebApplication.CreateBuilder(Array.Empty<string>());
 
         // Add services to the container.
-        builder.Services.RegisterServices();
+        builder.Services
+            .RegisterServices();
 
         var app = builder.Build();
 

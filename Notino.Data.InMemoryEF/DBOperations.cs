@@ -1,5 +1,6 @@
 ﻿namespace Notino.Data.InMemoryEF;
 
+using Notino.Data.InMemoryEF.Database;
 using Notino.Domain.Abstraction;
 using Notino.Domain.Models.Abstraction;
 
@@ -13,7 +14,7 @@ public sealed class DBOperations<TModel> : IDBOperations<TModel>
 
     public Task<TModel> InsertAsync(TModel data)
     {
-        throw new NotImplementedException();
+        NotinoDBContext
     }
 
     public Task<TModel> UpdateAsync(TModel data)

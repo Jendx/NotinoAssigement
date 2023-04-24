@@ -15,6 +15,7 @@ public static class DocumentEndpoints
 
     public static void AddDocumentEndpoints(this WebApplication? app)
     {
+        //Would rename to document. I did not do it becous i want to stick to assigement
         app.MapPost("/documents",
             async (
                 [FromBody] [Required] CreateDocumentCommand document,
@@ -41,14 +42,14 @@ public static class DocumentEndpoints
         .WithOpenApi();
 
         app.MapGet(
-            "/GetDocuments/{documentId}",
+            "/documents/{documentId}",
             async (
                 [FromRoute] [Required] Guid? documentId, 
                 [FromServices] IHandler<Document, GetDocumentCommand> handler,
-                 HttpContext httpContext) =>
+                [FromHeader] string accept) =>
             {
-                var acceptHeader = httpContext.Request.Headers["Accept"].FirstOrDefault(DefaultHeaderValue);
-                acceptHeader = acceptHeader is EmptyAcceptHeader or null ? DefaultHeaderValue : acceptHeader;
+                accept = accept is EmptyAcceptHeader or null ? DefaultHeaderValue : accept;
+                var documentType = Enum.Parse<DocumentType>(accept.Split('/')[1], true);
 
                 var result = await handler.HandleAsync(new GetDocumentCommand()
                 {
@@ -56,10 +57,10 @@ public static class DocumentEndpoints
                 });
 
                 var serializedResult = SerializerFactory
-                    .CreateSerializer<Document>(Enum.Parse<DocumentType>(acceptHeader, true))
+                    .CreateSerializer<Document>(documentType)
                     .Serialize(result);
 
-                return Results.Text(serializedResult, acceptHeader);
+                return Results.Text(serializedResult, accept);
             })
         .WithName("GetDocument")
         .WithOpenApi();
