@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notino.Api", "NotinoAssigem
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notino.Domain", "Domain\Notino.Domain.csproj", "{4E1EA23E-0BAD-4942-871D-7A8563F9B553}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notino.Data.SQLite", "Notino.Data-MSSQL\Notino.Data.SQLite.csproj", "{07D4CBC4-4D50-4FED-B1A5-B6DBB9697F90}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notino.Data.InMemoryEF", "Notino.Data.InMemoryEF\Notino.Data.InMemoryEF.csproj", "{C660CCC1-691E-4985-BC63-070951934BD4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8D435FA0-B7AF-4C2F-82E6-757A805A8E24}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notino.Data.SQLite", "Notino.Data.SQLite\Notino.Data.SQLite.csproj", "{AFB3329C-FAE7-4C6C-8FC4-7D5DD22EAF2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,14 +27,14 @@ Global
 		{4E1EA23E-0BAD-4942-871D-7A8563F9B553}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E1EA23E-0BAD-4942-871D-7A8563F9B553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E1EA23E-0BAD-4942-871D-7A8563F9B553}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07D4CBC4-4D50-4FED-B1A5-B6DBB9697F90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07D4CBC4-4D50-4FED-B1A5-B6DBB9697F90}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07D4CBC4-4D50-4FED-B1A5-B6DBB9697F90}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07D4CBC4-4D50-4FED-B1A5-B6DBB9697F90}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C660CCC1-691E-4985-BC63-070951934BD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C660CCC1-691E-4985-BC63-070951934BD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C660CCC1-691E-4985-BC63-070951934BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C660CCC1-691E-4985-BC63-070951934BD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFB3329C-FAE7-4C6C-8FC4-7D5DD22EAF2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFB3329C-FAE7-4C6C-8FC4-7D5DD22EAF2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFB3329C-FAE7-4C6C-8FC4-7D5DD22EAF2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFB3329C-FAE7-4C6C-8FC4-7D5DD22EAF2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

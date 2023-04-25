@@ -13,8 +13,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Notino.Domain.csproj" />
-    <ProjectReference Include="..\Notino.Data-MSSQL\Notino.Data.SQLite.csproj" />
     <ProjectReference Include="..\Notino.Data.InMemoryEF\Notino.Data.InMemoryEF.csproj" />
+    <ProjectReference Include="..\Notino.Data.SQLite\Notino.Data.SQLite.csproj" />
   </ItemGroup>
 
 </Project>

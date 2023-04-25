@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 internal sealed class DBOperations<TModel> : IDBOperations<TModel>
     where TModel : IModel, new()
 {
-    private const string connectionString = @"Data Source=C:..\Notino.Data-MSSQL\Database\NotinoAssignment.db";
+    private const string connectionString = @"Data Source=C:..\Notino.Data.SQLite\Database\NotinoAssignment.db";
 
     public async Task<IEnumerable<TModel>> GetAsync(TModel parameters, string query = null)
     {

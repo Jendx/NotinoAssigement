@@ -6,6 +6,7 @@ using Notino.Data.SQLite.SQL;
 using Notino.Domain.Abstraction;
 using Notino.Domain.Commands.DocumentCommands;
 using Notino.Domain.Models;
+using System.Reflection.Metadata.Ecma335;
 
 internal sealed class GetDocumentHandler : IHandler<Document, GetDocumentCommand>
 {
@@ -58,6 +59,11 @@ internal sealed class GetDocumentHandler : IHandler<Document, GetDocumentCommand
     private async Task<Document> GetDataFromInMemoryEFDBAsync(GetDocumentCommand command)
     {
         var documentResult = (await _documentsEF.GetAsync(new DocumentEntity())).Where(de => de.Id == command.Id).FirstOrDefault();
+        if (documentResult is null) 
+        { 
+            return null;
+        }
+
         var tagResult = await _tagsEF.GetAsync(new TagEntity());
 
         return new Document()
