@@ -1,4 +1,5 @@
 ﻿using Notino.Domain.Commands.DocumentCommands;
+using Notino.Domain.Helpers;
 using Notino.Domain.Models.Abstraction;
 
 namespace Notino.Data.InMemoryEF.Entities;
@@ -14,15 +15,26 @@ public sealed class DocumentEntity : IModel
         Id = id ?? Guid.NewGuid();
     }
 
-    public DocumentEntity(CreateDocumentCommand command) : this(command.Id)
+    public DocumentEntity(Guid id, object data = null)
     {
-        Data = command.Data;
-        Tags = command.Tags;
+        Id = id;
+        if (data is not null)
+        {
+            Data = data.ToByteArray();
+        }
+    }
+
+    public DocumentEntity(CreateDocumentCommand command) : this(command.Id, command.Data)
+    {
+    }    
+    
+    public DocumentEntity(UpdateDocumentCommand command) : this(command.Id, command.Data)
+    {
     }
 
     public Guid Id { get; set; }
 
-    public List<string> Tags { get; set; }
+    public List<TagEntity> Tags { get; set; }
 
-    public object Data { get; set; }
+    public byte[] Data { get; set; }
 }

@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Schema\" />
+    <Compile Remove="Schema\**" />
+    <EmbeddedResource Remove="Schema\**" />
+    <None Remove="Schema\**" />
   </ItemGroup>
 
   <ItemGroup>

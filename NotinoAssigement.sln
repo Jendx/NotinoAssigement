@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notino.Data.SQLite", "Notin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notino.Data.InMemoryEF", "Notino.Data.InMemoryEF\Notino.Data.InMemoryEF.csproj", "{C660CCC1-691E-4985-BC63-070951934BD4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8D435FA0-B7AF-4C2F-82E6-757A805A8E24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

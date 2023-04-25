@@ -5,6 +5,9 @@ using Notino.Data.InMemoryEF.Database;
 using Notino.Domain.Abstraction;
 using Notino.Domain.Models.Abstraction;
 
+/// <summary>
+/// InMemoryDB is Hastly implemented. Await lower quality
+/// </summary>
 public sealed class DBOperations<TModel> : IDBOperations<TModel>
     where TModel : class, IModel
 {
@@ -17,7 +20,7 @@ public sealed class DBOperations<TModel> : IDBOperations<TModel>
 
     public async Task<IEnumerable<TModel>> GetAsync(TModel parameters, string query = null)
     {
-        return await _dbContext.Set<TModel>().Where(d => d.Id == parameters.Id).ToArrayAsync();
+        return await _dbContext.Set<TModel>().ToArrayAsync();
     }
 
     public async Task<TModel> InsertAsync(TModel data)

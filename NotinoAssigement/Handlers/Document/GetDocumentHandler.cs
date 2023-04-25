@@ -11,17 +11,21 @@ internal sealed class GetDocumentHandler : IHandler<Document, GetDocumentCommand
 {
     private readonly IDBOperations<DocumentSchema> _documents;
     private readonly IDBOperations<TagSchema> _tags;
+
     private readonly IDBOperations<DocumentEntity> _documentsEF;
+    private readonly IDBOperations<TagEntity> _tagsEF;
 
     public GetDocumentHandler(
         IDBOperations<DocumentSchema> documents,
         IDBOperations<TagSchema> tags,
-        IDBOperations<DocumentEntity> _documentsEF)
+        IDBOperations<DocumentEntity> documentsEF,
+        IDBOperations<TagEntity> tagsEF)
     {
         _documents = documents ?? throw new ArgumentNullException(nameof(documents));
         _tags = tags ?? throw new ArgumentNullException(nameof(tags));
 
-        _documentsEF = _documentsEF ?? throw new ArgumentNullException(nameof(_documentsEF));
+        _documentsEF = documentsEF ?? throw new ArgumentNullException(nameof(documentsEF));
+        _tagsEF = tagsEF ?? throw new ArgumentNullException(nameof(tagsEF));
     }
 
     public async Task<Document> HandleAsync(GetDocumentCommand command)
@@ -53,13 +57,14 @@ internal sealed class GetDocumentHandler : IHandler<Document, GetDocumentCommand
 
     private async Task<Document> GetDataFromInMemoryEFDBAsync(GetDocumentCommand command)
     {
-        var result = (await _documentsEF.GetAsync(new DocumentEntity(command.Id))).FirstOrDefault();
+        var documentResult = (await _documentsEF.GetAsync(new DocumentEntity())).Where(de => de.Id == command.Id).FirstOrDefault();
+        var tagResult = await _tagsEF.GetAsync(new TagEntity());
 
         return new Document()
         {
-            Id = result.Id,
-            Data = result.Data,
-            Tags = result.Tags,
+            Id = documentResult.Id,
+            Data = documentResult.Data,
+            Tags = tagResult.Where(te => te.DocumentId == command.Id).Select(te => te.Tag).ToList(),
         };
     }
 }

@@ -15,7 +15,8 @@ public static class ServiceRegistrationExtension
             {
                 config.UseInMemoryDatabase("NotinoInMemoryDatabase");
             })
-            .AddScoped<IDBOperations<DocumentEntity>, DBOperations<DocumentEntity>>();
+            .AddScoped<IDBOperations<DocumentEntity>, DBOperations<DocumentEntity>>()
+            .AddScoped<IDBOperations<TagEntity>, DBOperations<TagEntity>>();
 
         return services;
     }

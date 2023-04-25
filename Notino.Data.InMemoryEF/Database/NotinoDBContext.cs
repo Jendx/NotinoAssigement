@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Notino.Data.InMemoryEF.Entities;
 using Notino.Domain.Models.Abstraction;
 
 namespace Notino.Data.InMemoryEF.Database;
@@ -28,4 +29,8 @@ public class NotinoDBContext : DbContext
 
         base.OnModelCreating(modelBuilder);
     }
+
+    public DbSet<DocumentEntity> DocumentEntities { get; set; }
+
+    public DbSet<TagEntity> TagEntities { get; set; }
 }
