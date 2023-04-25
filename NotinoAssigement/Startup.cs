@@ -3,7 +3,7 @@ namespace Notino.Api;
 using Notino.Api.Controllers.Documents;
 using Notino.Api.Extensions;
 
-public class API
+public class Startup
 {
     public static void Main()
     {

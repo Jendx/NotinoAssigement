@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8D435FA0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notino.Data.SQLite", "Notino.Data.SQLite\Notino.Data.SQLite.csproj", "{AFB3329C-FAE7-4C6C-8FC4-7D5DD22EAF2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{D246A68C-9287-4CC7-85ED-46EE3333039C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,9 +37,16 @@ Global
 		{AFB3329C-FAE7-4C6C-8FC4-7D5DD22EAF2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFB3329C-FAE7-4C6C-8FC4-7D5DD22EAF2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFB3329C-FAE7-4C6C-8FC4-7D5DD22EAF2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D246A68C-9287-4CC7-85ED-46EE3333039C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D246A68C-9287-4CC7-85ED-46EE3333039C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D246A68C-9287-4CC7-85ED-46EE3333039C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D246A68C-9287-4CC7-85ED-46EE3333039C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D246A68C-9287-4CC7-85ED-46EE3333039C} = {8D435FA0-B7AF-4C2F-82E6-757A805A8E24}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B89BA71-D31E-447C-8477-DA590094CC88}

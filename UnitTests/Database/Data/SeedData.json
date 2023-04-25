@@ -1,0 +1,42 @@
+[
+  {
+    "id": "f5d9082d-1960-4dc1-95e4-9f3d7d40c530",
+    "tags": [
+      "tag1",
+      "tag2",
+      "tag3"
+    ],
+    "data": "item 1 data"
+  },
+  {
+    "id": "e6e5db6e-cd6c-4e08-8ba2-97f9e66c1d97",
+    "tags": [
+      "tag2",
+      "tag3"
+    ],
+    "data": "item 2 data"
+  },
+  {
+    "id": "7fcf62d3-3e57-4828-89e1-6950d40baf2c",
+    "tags": [
+      "tag1",
+      "tag3"
+    ],
+    "data": "item 3 data"
+  },
+  {
+    "id": "f2d49f16-efc1-47f1-8e02-7859d64dfde6",
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "data": "item 4 data"
+  },
+  {
+    "id": "e7e9940a-77d7-4f17-b107-7f70c9f7410f",
+    "tags": [
+      "tag1"
+    ],
+    "data": "item 5 data"
+  }
+]
