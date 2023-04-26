@@ -1,4 +1,5 @@
 ﻿namespace Notino.Domain.Models.Abstraction;
+
 using System;
 
 public interface IModel

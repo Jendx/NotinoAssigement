@@ -5,9 +5,9 @@ using Notino.Domain.Commands.TagCommands;
 
 public sealed class UpdateDocumentCommand : ICommand
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; init; }
 
-    public List<UpdateTagCommand> Tags { get; set; }
+    public List<UpdateTagCommand> Tags { get; init; }
 
-    public object Data { get; set; }
+    public object Data { get; init; }
 }

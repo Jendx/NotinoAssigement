@@ -1,10 +1,10 @@
-﻿using Notino.Domain.Commands.Abstraction;
+﻿namespace Notino.Domain.Commands.TagCommands;
 
-namespace Notino.Domain.Commands.TagCommands;
+using Notino.Domain.Commands.Abstraction;
 
 public sealed class UpdateTagCommand : ICommand
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; init; }
 
-    public string Tag { get; set; }
+    public string Tag { get; init; }
 }

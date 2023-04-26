@@ -1,9 +1,8 @@
-﻿using Notino.Domain.Commands.Abstraction;
-using Notino.Domain.Enums;
+﻿namespace Notino.Domain.Commands.DocumentCommands;
 
-namespace Notino.Domain.Commands.DocumentCommands;
+using Notino.Domain.Commands.Abstraction;
 
 public sealed class GetDocumentCommand : ICommand
 {
-    public required Guid Id { get; set; }
+    public required Guid Id { get; init; }
 }

@@ -50,7 +50,7 @@ internal sealed class GetDocumentHandler : IHandler<Document, GetDocumentCommand
             Tags = tagsResult.Select(t => t.Tag).ToList(),
         };
 
-        var efResult = GetDataFromInMemoryEFDBAsync(command);
+        //var efResult = GetDataFromInMemoryEFDBAsync(command);
 
         return result;
     }

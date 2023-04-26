@@ -2,11 +2,11 @@
 
 using Notino.Domain.Commands.Abstraction;
 
-public class CreateDocumentCommand : ICommand
+public sealed class CreateDocumentCommand : ICommand
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; init; }
 
-    public List<string> Tags { get; set; }
+    public List<string> Tags { get; init; }
 
-    public object Data { get; set; }
+    public object Data { get; init; }
 }

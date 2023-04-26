@@ -37,6 +37,11 @@ public sealed class DocumentTests : DatabaseSeeder
 
         //asserts
         Assert.IsNotNull(documentResult);
-        Assert.AreEqual(ByteArrayHelper.FromByteArray<string>(documentResult.Data));
+        Assert.AreEqual(documentResult.Tags[0], "tag1");
     }
+
+    /// I have created only one basic test. If this was for real app, we should test at least: 
+    /// GetXML (Did it return Document? is it valid XML?, are values equal?),
+    /// InsertDocument(Is the inserted document == sended, Will it fail if bad Guid is sended? etc...),
+    /// UpdateDocument(Are updated values equal to what was sended...)
 }

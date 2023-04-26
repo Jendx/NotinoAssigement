@@ -1,8 +1,8 @@
-﻿using Notino.Domain.Enums;
+﻿namespace Notino.Domain.Serializers;
+
+using Notino.Domain.Enums;
 using Notino.Domain.Models.Abstraction;
 using Notino.Domain.Serializers.Abstraction;
-
-namespace Notino.Domain.Serializers;
 
 public static class SerializerFactory
 {

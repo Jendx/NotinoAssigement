@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Notino.Data.SQLite.TypeHandlers;
 using Notino.Domain.Abstraction;
 using Notino.Domain.Models;
-using Notino.Domain.Models.Abstraction;
 
 public static class RegistrationExtension
 {

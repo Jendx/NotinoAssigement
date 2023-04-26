@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 internal sealed class DBOperations<TModel> : IDBOperations<TModel>
     where TModel : IModel, new()
 {
-
     private readonly string connectionString;
 
     public DBOperations(IConfiguration configuration)

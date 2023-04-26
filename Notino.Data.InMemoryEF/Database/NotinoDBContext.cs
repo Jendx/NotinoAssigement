@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace Notino.Data.InMemoryEF.Database;
+
+using Microsoft.EntityFrameworkCore;
 using Notino.Data.InMemoryEF.Entities;
 using Notino.Domain.Models.Abstraction;
 
-namespace Notino.Data.InMemoryEF.Database;
-
-public class NotinoDBContext : DbContext
+public sealed class NotinoDBContext : DbContext
 {
     public NotinoDBContext(DbContextOptions<NotinoDBContext> options) : base(options)
     {

@@ -1,6 +1,6 @@
-﻿using System.Text.Json;
+﻿namespace Notino.Domain.Helpers;
 
-namespace Notino.Domain.Helpers;
+using System.Text.Json;
 
 public static class ByteArrayHelper
 {

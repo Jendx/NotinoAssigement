@@ -8,7 +8,7 @@ using Notino.Domain.Models.Abstraction;
 /// <summary>
 /// InMemoryDB is Hastly implemented. Await lower quality
 /// </summary>
-public sealed class DBOperations<TModel> : IDBOperations<TModel>
+internal sealed class DBOperations<TModel> : IDBOperations<TModel>
     where TModel : class, IModel
 {
     private readonly NotinoDBContext _dbContext;

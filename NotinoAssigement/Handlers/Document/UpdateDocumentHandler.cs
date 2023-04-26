@@ -4,7 +4,6 @@ using Notino.Api.Handlers.Abstraction;
 using Notino.Data.InMemoryEF.Entities;
 using Notino.Domain.Abstraction;
 using Notino.Domain.Commands.DocumentCommands;
-using Notino.Domain.Commands.TagCommands;
 using Notino.Domain.Helpers;
 using Notino.Domain.Models;
 
@@ -22,8 +21,8 @@ internal sealed class UpdateDocumentHandler : IHandler<Document, UpdateDocumentC
         IDBOperations<DocumentEntity> documentsEF,
         IDBOperations<TagEntity> tagsEF)
     {
-        _documents = documents is not null ? documents : throw new ArgumentNullException(nameof(documents));
-        _tags = tags is not null ? tags : throw new ArgumentNullException(nameof(tags));
+        _documents = documents ?? throw new ArgumentNullException(nameof(documents));
+        _tags = tags ?? throw new ArgumentNullException(nameof(tags));
 
         _documentsEF = documentsEF ?? throw new ArgumentNullException(nameof(documentsEF));
         _tagsEF = tagsEF ?? throw new ArgumentNullException(nameof(tagsEF));
@@ -40,6 +39,7 @@ internal sealed class UpdateDocumentHandler : IHandler<Document, UpdateDocumentC
         };
 
         await UpdateTagsAsync(command, result);
+        //var efResult = await UpdateDataFromInMemoryEFDBAsync(command);
 
         return result;
     }

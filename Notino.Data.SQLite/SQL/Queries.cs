@@ -1,6 +1,6 @@
-﻿using Notino.Domain.Models;
+﻿namespace Notino.Data.SQLite.SQL;
 
-namespace Notino.Data.SQLite.SQL;
+using Notino.Domain.Models;
 
 public static class Queries
 {

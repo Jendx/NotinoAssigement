@@ -1,6 +1,6 @@
-﻿using Notino.Domain.Models.Abstraction;
+﻿namespace Notino.Domain.Serializers.Abstraction;
 
-namespace Notino.Domain.Serializers.Abstraction;
+using Notino.Domain.Models.Abstraction;
 
 public interface ISerializer<TData>
     where TData : IModel

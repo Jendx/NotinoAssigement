@@ -1,13 +1,11 @@
 ﻿namespace Notino.Api.Handlers.Document;
 
 using Notino.Api.Handlers.Abstraction;
-using Notino.Data.InMemoryEF;
 using Notino.Data.InMemoryEF.Entities;
 using Notino.Domain.Abstraction;
 using Notino.Domain.Commands.DocumentCommands;
 using Notino.Domain.Helpers;
 using Notino.Domain.Models;
-using Notino.Domain.Models.Abstraction;
 
 internal sealed class CreateDocumentHandler : IHandler<Document, CreateDocumentCommand>
 {
@@ -43,7 +41,7 @@ internal sealed class CreateDocumentHandler : IHandler<Document, CreateDocumentC
         await InsertTagsAsync(command, result);
         
         //Just showcase that this project supports multiple DB's 
-        var efResult = await InsertDataFromInMemoryEFDBAsync(command);
+        //var efResult = await InsertDataFromInMemoryEFDBAsync(command);
 
         return result;
     }

@@ -1,8 +1,8 @@
-﻿using Notino.Domain.Commands.DocumentCommands;
+﻿namespace Notino.Data.InMemoryEF.Entities;
+
+using Notino.Domain.Commands.DocumentCommands;
 using Notino.Domain.Helpers;
 using Notino.Domain.Models.Abstraction;
-
-namespace Notino.Data.InMemoryEF.Entities;
 
 public sealed class DocumentEntity : IModel
 {

@@ -15,7 +15,7 @@ public static class DocumentEndpoints
 
     public static void AddDocumentEndpoints(this WebApplication? app)
     {
-        //Would rename to document. I did not do it becous i want to stick to assigement
+        //Would rename to document. I did not do it becous I wanted to stick to the assigement
         app.MapPost("/documents",
             async (
                 [FromBody] [Required] CreateDocumentCommand document,
