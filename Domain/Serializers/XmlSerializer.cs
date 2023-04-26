@@ -12,7 +12,6 @@ internal sealed class XmlSerializer<TData> : ISerializer<TData>
     public string Serialize(TData data)
     {
         // Serialize the object to an XML string
-        string xmlString;
         using var stringWriter = new StringWriter();
 
         _serializer.Serialize(stringWriter, data);

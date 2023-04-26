@@ -5,9 +5,9 @@ using Notino.Api.Extensions;
 
 public class Startup
 {
-    public static void Main()
+    public static void Main(string[] startupArgs)
     {
-        var builder = WebApplication.CreateBuilder(Array.Empty<string>());
+        var builder = WebApplication.CreateBuilder(startupArgs);
 
         // Add services to the container.
         builder.Services

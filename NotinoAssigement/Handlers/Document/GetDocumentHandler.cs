@@ -6,7 +6,6 @@ using Notino.Data.SQLite.SQL;
 using Notino.Domain.Abstraction;
 using Notino.Domain.Commands.DocumentCommands;
 using Notino.Domain.Models;
-using System.Reflection.Metadata.Ecma335;
 
 internal sealed class GetDocumentHandler : IHandler<Document, GetDocumentCommand>
 {

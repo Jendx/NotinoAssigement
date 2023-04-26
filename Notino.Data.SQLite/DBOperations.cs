@@ -2,6 +2,7 @@
 
 using Dapper;
 using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Configuration;
 using Notino.Domain.Abstraction;
 using Notino.Domain.Attributes;
 using Notino.Domain.Models.Abstraction;
@@ -11,7 +12,14 @@ using System.Threading.Tasks;
 internal sealed class DBOperations<TModel> : IDBOperations<TModel>
     where TModel : IModel, new()
 {
-    private const string connectionString = @"Data Source=C:..\Notino.Data.SQLite\Database\NotinoAssignment.db";
+
+    private readonly string connectionString;
+
+    public DBOperations(IConfiguration configuration)
+    {
+        connectionString = configuration.GetRequiredSection("ConnectionString").Value;
+    }
+
 
     public async Task<IEnumerable<TModel>> GetAsync(TModel parameters, string query = null)
     {

@@ -60,7 +60,7 @@ public static class DocumentEndpoints
                     .CreateSerializer<Document>(documentType)
                     .Serialize(result);
 
-                return Results.Text(serializedResult, accept);
+                return Results.Ok(serializedResult);
             })
         .WithName("GetDocument")
         .WithOpenApi();
