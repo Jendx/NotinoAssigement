@@ -23,8 +23,8 @@ public sealed class DocumentTests : DatabaseSeeder
 
     public TestContext TestContext { get; set; }
 
-    [TestMethod]
     //Tryes to get document from Tests.db
+    [TestMethod]
     public async Task GetJsonDocumentAsync()
     {
         //Prepare
